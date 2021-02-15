@@ -1,0 +1,6 @@
+C:\Users\moxemus\source\repos\ConsoleHanoi\ConsoleHanoi\bin\Debug\ConsoleHanoi.exe.config
+C:\Users\moxemus\source\repos\ConsoleHanoi\ConsoleHanoi\bin\Debug\ConsoleHanoi.exe
+C:\Users\moxemus\source\repos\ConsoleHanoi\ConsoleHanoi\bin\Debug\ConsoleHanoi.pdb
+C:\Users\moxemus\source\repos\ConsoleHanoi\ConsoleHanoi\obj\Debug\ConsoleHanoi.csproj.CoreCompileInputs.cache
+C:\Users\moxemus\source\repos\ConsoleHanoi\ConsoleHanoi\obj\Debug\ConsoleHanoi.exe
+C:\Users\moxemus\source\repos\ConsoleHanoi\ConsoleHanoi\obj\Debug\ConsoleHanoi.pdb
