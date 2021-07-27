@@ -39,8 +39,8 @@ namespace ConsoleTowers
 
                 foreach (int a in map[Tower2])
                     userAnwser += a.ToString();
-            }
-            catch { }
+            } catch { }
+			
             return userAnwser == answer; 
         }
 
@@ -79,8 +79,7 @@ namespace ConsoleTowers
                     int b = Convert.ToInt32(Console.ReadLine());
 
                     if (towers.Push(a - 1, b - 1)) break;
-                }
-                catch { } 
+                } catch { } 
         }
     }
 }
