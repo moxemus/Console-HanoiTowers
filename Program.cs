@@ -1,85 +1,61 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace ConsoleTowers
+static class Towers
 {
-    class Towers
+    static int towersCount = 3;
+    static int diskValue = 5;
+    static string correctAnswer = "12345";
+
+    static Stack<int>[] map = new Stack<int>[towersCount];
+
+    static public bool Push(int Tower1, int Tower2)
     {
-        const int towersCount = 3;
-        const int diskValue = 5;
-        string answer = "";
-        
-        Stack<int>[] map = new Stack<int>[towersCount];
+        string userAnwser = "";
 
-        public Towers()
+        if (map[Tower2].Count > 0 && map[Tower1].Peek() > map[Tower2].Peek())
+            return false;
+
+        map[Tower2].Push(map[Tower1].Pop());
+
+        foreach (int a in map[Tower2])
+            userAnwser += a.ToString();
+
+        return userAnwser == correctAnswer;
+    }
+
+    static public void ShowInConsole()
+    {
+        foreach (Stack<int> tower in map)
         {
-            Random rand = new Random();
+            string str = "";
 
-            for (int i = 0; i < towersCount; i++) 
-                map[i] = new Stack<int>();
+            foreach (int a in tower) str += a.ToString();
 
-            for (int i = 1; i < diskValue + 1; i++)
-            {
-                map[rand.Next(towersCount)].Push(i);
-                answer += i.ToString();
-            }
-        }
-        
-        public bool Push(int Tower1, int Tower2)
-        {
-            string userAnwser = "";
+            for (int i = 0; i < towersCount - str.Length + 1; i++)
+                str = ' ' + str;
 
-            try
-            {
-                if (map[Tower2].Count > 0)
-                    if (map[Tower1].Peek() > map[Tower2].Peek())
-                        throw new Exception();
-
-                map[Tower2].Push(map[Tower1].Pop());
-
-                foreach (int a in map[Tower2])
-                    userAnwser += a.ToString();
-            } catch { }
-			
-            return userAnwser == answer; 
-        }
-
-        public void Show()
-        {
-            foreach (Stack<int> tower in map)
-            {
-                string str = "";
-
-                foreach (int a in tower) 
-                    str += a.ToString();
-
-                int n = str.Length;
-
-                for (int i = 0; i < towersCount - n + 1; i++)
-                    str = ' ' + str;
-
-                Console.WriteLine(str);
-            }
+            Console.WriteLine(str);
         }
     }
 
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Towers towers = new Towers();
+        for (int i = 0; i < Towers.towersCount; i++)
+            Towers.map[i] = new Stack<int>();
 
-            while (true)
-                try
-                {
-                    Console.Clear();
-                    towers.Show();
+        for (int i = 1; i < Towers.diskValue + 1; i++)
+            Towers.map[new Random().Next(Towers.towersCount)].Push(i);
 
-                    int a = Convert.ToInt32(Console.ReadLine());
-                    int b = Convert.ToInt32(Console.ReadLine());
+        while (true)
+            try
+            {
+                Console.Clear();
+                Towers.ShowInConsole();
 
-                    if (towers.Push(a - 1, b - 1)) break;
-                } catch { } 
-        }
+                if (Towers.Push(Convert.ToInt32(Console.ReadLine()) - 1,
+                    Convert.ToInt32(Console.ReadLine()) - 1)) break;
+            }
+            catch { };
     }
 }
